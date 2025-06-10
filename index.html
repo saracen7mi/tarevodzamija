@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0">
+    <title>Stara dzamija u Tarevu - Kladnju</title>
+    <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+        a-scene {
+            width: 90%;
+            height: 80vh;
+        }
+    </style>
+</head>
+<body>
+    <audio id="audio-bosnian">
+        <source src="https://cdn.glitch.global/4af910c6-eda3-46ab-9d21-038ca536d652/tarevodzamija.mp3?v=1743276198232" type="audio/mpeg">
+    </audio>
+    <audio id="audio-english">
+        <source src="https://cdn.glitch.global/4af910c6-eda3-46ab-9d21-038ca536d652/tarevoEngleski.mp3?v=1743276206666" type="audio/mpeg">
+    </audio>
+    <audio id="audio-german">
+        <source src="https://cdn.glitch.global/4af910c6-eda3-46ab-9d21-038ca536d652/tarevoNjemacki.mp3?v=1743276231031" type="audio/mpeg">
+    </audio>
+    <audio id="audio-italian">
+        <source src="https://cdn.glitch.global/4af910c6-eda3-46ab-9d21-038ca536d652/tarevoItalijanski.mp3?v=1743276440119" type="audio/mpeg">
+    </audio>
+    <audio id="audio-turkish">
+        <source src="https://cdn.glitch.global/4af910c6-eda3-46ab-9d21-038ca536d652/tarevoTurski.mp3?v=1743276236493" type="audio/mpeg">
+    </audio>
+
+  
+    <a-scene embedded arjs="sourceType: webcam; trackingMethod: best; debugUIEnabled: false;">
+        <a-plane color="#008000" height="3.5" width="6.5" position="0 0.5 -5" opacity="0.9"></a-plane>
+
+       <a-entity 
+            gltf-model="https://cdn.glitch.global/4af910c6-eda3-46ab-9d21-038ca536d652/mjeseciZvjezda.glb?v=1743277332099" 
+            position="-2 1 -5" 
+            scale="1 1 1" 
+            rotation="0 240 0" 
+            animation="property: rotation; to: 0 360 0; loop: true; dur: 5000">
+        </a-entity>
+
+      <a-entity 
+    gltf-model="https://cdn.glitch.global/4af910c6-eda3-46ab-9d21-038ca536d652/grbopstine3d.glb?v=1743276265780" 
+    position="2 1 -5" 
+    scale="1 1 1" 
+    rotation="0 240 0" 
+    animation="property: rotation; to: 0 360 0; loop: true; dur: 5000">
+</a-entity>
+      
+      
+      
+  
+
+<a-entity id="eng-button" geometry="primitive: plane; height: 0.5; width: 1.5"
+          material="color: red" position="-2.5 2 -4.9"
+          text="value: ENG; color: white; align: center; width: 3;">
+</a-entity>
+
+<a-entity id="deu-button" geometry="primitive: plane; height: 0.5; width: 1.5"
+          material="color: yellow" position="-1 2 -4.9"
+          text="value: DEU; color: black; align: center; width: 3;">
+</a-entity>
+
+<a-entity id="ita-button" geometry="primitive: plane; height: 0.5; width: 1.5"
+          material="color: blue" position="0.5 2 -4.9"
+          text="value: ITA; color: white; align: center; width: 3;">
+</a-entity>
+
+<a-entity id="tur-button" geometry="primitive: plane; height: 0.5; width: 1.5"
+          material="color: brown" position="2 2 -4.9"
+          text="value: TUR; color: white; align: center; width: 3;">
+</a-entity>
+
+
+        <a-entity position="0 0.6 -4.9">
+            <a-text value="Stara džamija u Tarevu , svjedok vjekovne tradicije
+Duboko u srcu slikovitog kraja Kladnja, smještena među brežuljcima i netaknutom prirodom, ponosno stoji Stara džamija u Tarevu , biser osmanske arhitekture i neprocjenjivi dio kulturnog naslijeđa Bosne i Hercegovine.
+Prema usmenim predanjima, džamija je izgrađena krajem sedamnestog stoljeća, najvjerovatnije oko hiljadu Šesto devedesete godine. Njeni debeli kameni zidovi i drveni krov svjedočili su stoljećima historije, dok su generacije vjernika prenosile priče o njenom značaju. Ovo je mjesto gdje se tradicija čuva i njeguje, gdje se prošlost i sadašnjost susreću u duhovnom skladu.
+Džamija je građena na pravougaonoj osnovi, dimenzija devet puta Šest metara, s temeljima od lomljenog kamena i pažljivo izrađenim drvenim elementima, uključujući prozore i trijem, prefarbane u prepoznatljivu zelenu boju. Njeno najprepoznatljivije obilježje je krovni minaret – prvobitno izrađen od drveta, a kasnije obložen limom, dajući džamiji specifičan, rustikalni šarm.
+Uprkos starosti, Stara džamija u Tarevu i dalje zrači duhovnim mirom i autentičnom ljepotom.
+ "
+                    color="#FFFF00" width="5.5" wrap-count="50" align="center" scale="0.5 0.5 0.5">
+            </a-text>
+        </a-entity>
+
+              
+        
+        <!-- Dodani tekst ispod žutog teksta -->
+        <a-entity position="0 -0.8 -4.9" id="location-link">
+            <a-text 
+                value="Lokacija:" 
+                position="-2 0 0.05" 
+                color="#000000"
+                align="center"
+                scale="1.2 1.4 1.4"
+                letter-spacing="1">
+            </a-text>
+           <!-- Crvena pozadina samo za "Klikni ovde" -->
+    <a-plane 
+        color="#FF0000" 
+        height="0.5" 
+        width="1.6" 
+        opacity="0.5" 
+        position="-0.3 0 0.06">
+    </a-plane>
+
+    <!-- "Klikni ovde" na crvenoj pozadini -->
+    <a-text 
+        value="Klikni ovde" 
+        position="-0.4 0 0.06"  
+        color="#000000"
+        align="center"
+        scale="1.2 1.2 1.2" 
+        letter-spacing="1"
+        class="clickable">
+    </a-text>
+          
+          
+        </a-entity>
+
+      
+      
+        <a-entity 
+            gltf-model="" 
+            position="-2 1 -5" 
+            scale="0.5 0.5 0.5" 
+            rotation="0 240 0" 
+            animation="property: rotation; to: 0 360 0; loop: true; dur: 5000">
+        </a-entity>
+
+        <a-entity 
+            gltf-model="" 
+            position="2 1 -5" 
+            scale="0.5 0.5 0.5" 
+            rotation="0 240 0" 
+            animation="property: rotation; to: 0 360 0; loop: true; dur: 5000">
+        </a-entity>
+
+        <a-entity camera look-controls position="0 0 0" fov="85">
+            <a-cursor color="#FF0000" radius="0.05"></a-cursor>
+        </a-entity>
+      
+      
+    </a-scene>
+
+    <script>
+        let bosnianAudio = document.getElementById('audio-bosnian');
+        let englishAudio = document.getElementById('audio-english');
+        let germanAudio = document.getElementById('audio-german');
+        let italianAudio = document.getElementById('audio-italian');
+        let turkishAudio = document.getElementById('audio-turkish');
+
+        function stopAllAudio() {
+            [bosnianAudio, englishAudio, germanAudio, italianAudio, turkishAudio].forEach(audio => {
+                audio.pause();
+                audio.currentTime = 0;
+            });
+        }
+
+        function playAudio(audioElement) {
+            stopAllAudio();
+            audioElement.play();
+        }
+
+        document.getElementById('eng-button').addEventListener('mouseenter', () => playAudio(englishAudio));
+        document.getElementById('deu-button').addEventListener('mouseenter', () => playAudio(germanAudio));
+        document.getElementById('ita-button').addEventListener('mouseenter', () => playAudio(italianAudio));
+        document.getElementById('tur-button').addEventListener('mouseenter', () => playAudio(turkishAudio));
+
+        // window.addEventListener('load', () => {
+        //     bosnianAudio.play().catch(e => console.log("Audio autoplay blokiran: " + e));
+        // });
+      
+      window.addEventListener('load', () => {
+    document.body.addEventListener('click', () => {
+        if (bosnianAudio.paused) {
+            bosnianAudio.play();
+        }
+    }, { once: true }); // Pokreće se samo jednom
+});
+
+    document.getElementById('location-link').addEventListener('click', () => {
+    window.location.href = 'https://www.google.com/maps/dir/?api=1&destination= 44.323113,18.665817 &travelmode=driving';
+});
+
+      
+    </script>
+</body>
+</html>
