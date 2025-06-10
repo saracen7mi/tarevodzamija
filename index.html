@@ -141,141 +141,163 @@ Uprkos starosti, Stara džamija u Tarevu i dalje zrači duhovnim mirom i autenti
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Stara džamija u Tarevu - Kladnju</title>
-  <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
-  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
-  <style>
-    body {
-      margin: 0;
-      overflow: hidden;
-    }
-    a-scene {
-      width: 90%;
-      height: 80vh;
-    }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Stara dzamija u Tarevu - Kladnju</title>
+    <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+        a-scene {
+            width: 90%;
+            height: 80vh;
+        }
+        .clickable {
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
+    <audio id="audio-bosnian">
+        <source src="https://raw.githubusercontent.com/saracen7mi/tarevodzamija/main/tarevodzamija.mp3" type="audio/mpeg" />
+    </audio>
+    <audio id="audio-english">
+        <source src="https://raw.githubusercontent.com/saracen7mi/tarevodzamija/main/tarevoEngleski.mp3" type="audio/mpeg" />
+    </audio>
+    <audio id="audio-german">
+        <source src="https://raw.githubusercontent.com/saracen7mi/tarevodzamija/main/tarevoNjemacki.mp3" type="audio/mpeg" />
+    </audio>
+    <audio id="audio-italian">
+        <source src="https://raw.githubusercontent.com/saracen7mi/tarevodzamija/main/tarevoItalijanski.mp3" type="audio/mpeg" />
+    </audio>
+    <audio id="audio-turkish">
+        <source src="https://raw.githubusercontent.com/saracen7mi/tarevodzamija/main/tarevoTurski.mp3" type="audio/mpeg" />
+    </audio>
 
-  <!-- Audio files -->
-  <audio id="audio-bosnian">
-    <source src="https://raw.githubusercontent.com/saracen7mi/tarevodzamija/main/tarevodzamija.mp3" type="audio/mpeg">
-  </audio>
-  <audio id="audio-english">
-    <source src="https://raw.githubusercontent.com/saracen7mi/tarevodzamija/main/tarevoEngleski.mp3" type="audio/mpeg">
-  </audio>
-  <audio id="audio-german">
-    <source src="https://raw.githubusercontent.com/saracen7mi/tarevodzamija/main/tarevoNjemacki.mp3" type="audio/mpeg">
-  </audio>
-  <audio id="audio-italian">
-    <source src="https://raw.githubusercontent.com/saracen7mi/tarevodzamija/main/tarevoItalijanski.mp3" type="audio/mpeg">
-  </audio>
-  <audio id="audio-turkish">
-    <source src="https://raw.githubusercontent.com/saracen7mi/tarevodzamija/main/tarevoTurski.mp3" type="audio/mpeg">
-  </audio>
+    <a-scene embedded arjs="sourceType: webcam; trackingMethod: best; debugUIEnabled: false;">
+        <a-plane color="#008000" height="3.5" width="6.5" position="0 0.5 -5" opacity="0.9"></a-plane>
 
-  <!-- AR scene -->
-  <a-scene embedded arjs="sourceType: webcam; trackingMethod: best; debugUIEnabled: false;">
-    <a-plane color="#008000" height="3.5" width="6.5" position="0 0.5 -5" opacity="0.9"></a-plane>
+        <a-entity 
+            gltf-model="https://cdn.jsdelivr.net/gh/saracen7mi/tarevodzamija@main/grbOpstine.glb" 
+            position="-2 1 -5" 
+            scale="1 1 1" 
+            rotation="0 240 0" 
+            animation="property: rotation; to: 0 360 0; loop: true; dur: 5000">
+        </a-entity>
 
-    <!-- 3D models -->
-    <a-entity 
-      gltf-model="https://cdn.jsdelivr.net/gh/saracen7mi/tarevodzamija@main/grbOpstine.glb"
-      position="-2 1 -5"
-      scale="1 1 1"
-      rotation="0 240 0"
-      animation="property: rotation; to: 0 360 0; loop: true; dur: 5000">
-    </a-entity>
+        <a-entity 
+            gltf-model="https://cdn.jsdelivr.net/gh/saracen7mi/tarevodzamija@main/zvijezdaislam.glb" 
+            position="2 1 -5" 
+            scale="1 1 1" 
+            rotation="0 240 0" 
+            animation="property: rotation; to: 0 360 0; loop: true; dur: 5000">
+        </a-entity>
 
-    <a-entity 
-      gltf-model="https://cdn.jsdelivr.net/gh/saracen7mi/tarevodzamija@main/zvijezdaislam.glb"
-      position="2 1 -5"
-      scale="1 1 1"
-      rotation="0 240 0"
-      animation="property: rotation; to: 0 360 0; loop: true; dur: 5000">
-    </a-entity>
+        <!-- Buttons for language audio -->
+        <a-entity id="eng-button" class="clickable" geometry="primitive: plane; height: 0.5; width: 1.5"
+                  material="color: red" position="-2.5 2 -4.9"
+                  text="value: ENG; color: white; align: center; width: 3;">
+        </a-entity>
 
-    <!-- Language buttons -->
-    <a-entity id="eng-button" geometry="primitive: plane; height: 0.5; width: 1.5"
-              material="color: red" position="-2.5 2 -4.9"
-              text="value: ENG; color: white; align: center; width: 3;">
-    </a-entity>
-    <a-entity id="deu-button" geometry="primitive: plane; height: 0.5; width: 1.5"
-              material="color: yellow" position="-1 2 -4.9"
-              text="value: DEU; color: black; align: center; width: 3;">
-    </a-entity>
-    <a-entity id="ita-button" geometry="primitive: plane; height: 0.5; width: 1.5"
-              material="color: blue" position="0.5 2 -4.9"
-              text="value: ITA; color: white; align: center; width: 3;">
-    </a-entity>
-    <a-entity id="tur-button" geometry="primitive: plane; height: 0.5; width: 1.5"
-              material="color: brown" position="2 2 -4.9"
-              text="value: TUR; color: white; align: center; width: 3;">
-    </a-entity>
+        <a-entity id="deu-button" class="clickable" geometry="primitive: plane; height: 0.5; width: 1.5"
+                  material="color: yellow" position="-1 2 -4.9"
+                  text="value: DEU; color: black; align: center; width: 3;">
+        </a-entity>
 
-    <!-- Descriptive Text -->
-    <a-entity position="0 0.6 -4.9">
-      <a-text value="Stara džamija u Tarevu, svjedok vjekovne tradicije
+        <a-entity id="ita-button" class="clickable" geometry="primitive: plane; height: 0.5; width: 1.5"
+                  material="color: blue" position="0.5 2 -4.9"
+                  text="value: ITA; color: white; align: center; width: 3;">
+        </a-entity>
+
+        <a-entity id="tur-button" class="clickable" geometry="primitive: plane; height: 0.5; width: 1.5"
+                  material="color: brown" position="2 2 -4.9"
+                  text="value: TUR; color: white; align: center; width: 3;">
+        </a-entity>
+
+        <!-- Text block -->
+        <a-entity position="0 0.6 -4.9">
+            <a-text value="Stara džamija u Tarevu, svjedok vjekovne tradicije
 Duboko u srcu slikovitog kraja Kladnja, smještena među brežuljcima i netaknutom prirodom, ponosno stoji Stara džamija u Tarevu, biser osmanske arhitekture i neprocjenjivi dio kulturnog naslijeđa Bosne i Hercegovine.
-Prema usmenim predanjima, džamija je izgrađena krajem sedamnaestog stoljeća, najvjerovatnije oko 1690. godine. Njeni debeli kameni zidovi i drveni krov svjedočili su stoljećima historije, dok su generacije vjernika prenosile priče o njenom značaju. Ovo je mjesto gdje se tradicija čuva i njeguje, gdje se prošlost i sadašnjost susreću u duhovnom skladu.
-Džamija je građena na pravougaonoj osnovi, dimenzija 9 x 6 metara, s temeljima od lomljenog kamena i pažljivo izrađenim drvenim elementima, uključujući prozore i trijem, prefarbane u prepoznatljivu zelenu boju. Njeno najprepoznatljivije obilježje je krovni minaret – prvobitno izrađen od drveta, a kasnije obložen limom, dajući džamiji specifičan, rustikalni šarm.
+Prema usmenim predanjima, džamija je izgrađena krajem sedamnestog stoljeća, najvjerovatnije oko hiljadu šesto devedesete godine. Njeni debeli kameni zidovi i drveni krov svjedočili su stoljećima historije, dok su generacije vjernika prenosile priče o njenom značaju. Ovo je mjesto gdje se tradicija čuva i njeguje, gdje se prošlost i sadašnjost susreću u duhovnom skladu.
+Džamija je građena na pravougaonoj osnovi, dimenzija devet puta šest metara, s temeljima od lomljenog kamena i pažljivo izrađenim drvenim elementima, uključujući prozore i trijem, prefarbane u prepoznatljivu zelenu boju. Njeno najprepoznatljivije obilježje je krovni minaret – prvobitno izrađen od drveta, a kasnije obložen limom, dajući džamiji specifičan, rustikalni šarm.
 Uprkos starosti, Stara džamija u Tarevu i dalje zrači duhovnim mirom i autentičnom ljepotom."
-              color="#FFFF00" width="5.5" wrap-count="50" align="center" scale="0.5 0.5 0.5">
-      </a-text>
-    </a-entity>
+                    color="#FFFF00" width="5.5" wrap-count="50" align="center" scale="0.5 0.5 0.5">
+            </a-text>
+        </a-entity>
 
-    <!-- Google Maps Location Button -->
-    <a-entity position="0 -0.8 -4.9" id="location-link">
-      <a-text value="Lokacija:" position="-2 0 0.05" color="#000000"
-              align="center" scale="1.2 1.4 1.4" letter-spacing="1">
-      </a-text>
-      <a-plane color="#FF0000" height="0.5" width="1.6" opacity="0.5" position="-0.3 0 0.06"></a-plane>
-      <a-text value="Klikni ovde" position="-0.4 0 0.06" color="#000000"
-              align="center" scale="1.2 1.2 1.2" letter-spacing="1" class="clickable">
-      </a-text>
-    </a-entity>
-  </a-scene>
+        <!-- Location link -->
+        <a-entity position="0 -0.8 -4.9" id="location-link" class="clickable">
+            <a-text 
+                value="Lokacija:" 
+                position="-2 0 0.05" 
+                color="#000000"
+                align="center"
+                scale="1.2 1.4 1.4"
+                letter-spacing="1">
+            </a-text>
+            <a-plane 
+                color="#FF0000" 
+                height="0.5" 
+                width="1.6" 
+                opacity="0.5" 
+                position="-0.3 0 0.06">
+            </a-plane>
+            <a-text 
+                value="Klikni ovde" 
+                position="-0.4 0 0.06"  
+                color="#000000"
+                align="center"
+                scale="1.2 1.2 1.2" 
+                letter-spacing="1"
+                class="clickable">
+            </a-text>
+        </a-entity>
 
-  <!-- Script to handle audio and location -->
-  <script>
-    const bosnianAudio = document.getElementById('audio-bosnian');
-    const englishAudio = document.getElementById('audio-english');
-    const germanAudio = document.getElementById('audio-german');
-    const italianAudio = document.getElementById('audio-italian');
-    const turkishAudio = document.getElementById('audio-turkish');
+        <!-- Camera + Cursor for interaction -->
+        <a-entity camera look-controls position="0 0 0">
+            <a-cursor color="#FF0000" radius="0.05"></a-cursor>
+        </a-entity>
+    </a-scene>
 
-    function stopAllAudio() {
-      [bosnianAudio, englishAudio, germanAudio, italianAudio, turkishAudio].forEach(audio => {
-        audio.pause();
-        audio.currentTime = 0;
-      });
-    }
+    <script>
+        const bosnianAudio = document.getElementById('audio-bosnian');
+        const englishAudio = document.getElementById('audio-english');
+        const germanAudio = document.getElementById('audio-german');
+        const italianAudio = document.getElementById('audio-italian');
+        const turkishAudio = document.getElementById('audio-turkish');
 
-    function playAudio(audioElement) {
-      stopAllAudio();
-      audioElement.play();
-    }
-
-    document.getElementById('eng-button').addEventListener('mouseenter', () => playAudio(englishAudio));
-    document.getElementById('deu-button').addEventListener('mouseenter', () => playAudio(germanAudio));
-    document.getElementById('ita-button').addEventListener('mouseenter', () => playAudio(italianAudio));
-    document.getElementById('tur-button').addEventListener('mouseenter', () => playAudio(turkishAudio));
-
-    window.addEventListener('load', () => {
-      document.body.addEventListener('click', () => {
-        if (bosnianAudio.paused) {
-          bosnianAudio.play();
+        function stopAllAudio() {
+            [bosnianAudio, englishAudio, germanAudio, italianAudio, turkishAudio].forEach(audio => {
+                audio.pause();
+                audio.currentTime = 0;
+            });
         }
-      }, { once: true });
-    });
 
-    document.getElementById('location-link').addEventListener('click', () => {
-      window.location.href = 'https://www.google.com/maps/dir/?api=1&destination=44.323113,18.665817&travelmode=driving';
-    });
-  </script>
+        function playAudio(audioElement) {
+            stopAllAudio();
+            audioElement.play();
+        }
+
+        // Play bosnian audio first on first user click anywhere (browser requires user gesture)
+        window.addEventListener('click', () => {
+            if (bosnianAudio.paused) {
+                bosnianAudio.play();
+            }
+        }, { once: true });
+
+        // Add click listeners for language buttons
+        document.getElementById('eng-button').addEventListener('click', () => playAudio(englishAudio));
+        document.getElementById('deu-button').addEventListener('click', () => playAudio(germanAudio));
+        document.getElementById('ita-button').addEventListener('click', () => playAudio(italianAudio));
+        document.getElementById('tur-button').addEventListener('click', () => playAudio(turkishAudio));
+
+        // Location link click
+        document.getElementById('location-link').addEventListener('click', () => {
+            window.open('https://www.google.com/maps/dir/?api=1&destination=44.323113,18.665817&travelmode=driving', '_blank');
+        });
+    </script>
 </body>
 </html>
-
- 
