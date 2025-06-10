@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -134,7 +134,6 @@ Uprkos starosti, Stara džamija u Tarevu i dalje zrači duhovnim mirom i autenti
     </script>
 </body>
 </html>
- -->
 
 
 
@@ -142,163 +141,6 @@ Uprkos starosti, Stara džamija u Tarevu i dalje zrači duhovnim mirom i autenti
 
 
 
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=0" />
-  <title>Stara dzamija u Tarevu - Kladnju</title>
-  <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
-  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
-  <style>
-    body {
-      margin: 0;
-      overflow: hidden;
-    }
-    a-scene {
-      width: 100%;
-      height: 90vh;
-    }
-    .clickable {
-      cursor: pointer;
-    }
-  </style>
-</head>
-<body>
-  <audio id="audio-bosnian">
-    <source src="https://raw.githubusercontent.com/saracen7mi/tarevodzamija/main/tarevodzamija.mp3" type="audio/mpeg" />
-  </audio>
-  <audio id="audio-english">
-    <source src="https://raw.githubusercontent.com/saracen7mi/tarevodzamija/main/tarevoEngleski.mp3" type="audio/mpeg" />
-  </audio>
-  <audio id="audio-german">
-    <source src="https://raw.githubusercontent.com/saracen7mi/tarevodzamija/main/tarevoNjemacki.mp3" type="audio/mpeg" />
-  </audio>
-  <audio id="audio-italian">
-    <source src="https://raw.githubusercontent.com/saracen7mi/tarevodzamija/main/tarevoItalijanski.mp3" type="audio/mpeg" />
-  </audio>
-  <audio id="audio-turkish">
-    <source src="https://raw.githubusercontent.com/saracen7mi/tarevodzamija/main/tarevoTurski.mp3" type="audio/mpeg" />
-  </audio>
-<a-scene embedded arjs="sourceType: webcam; trackingMethod: best; debugUIEnabled: false;">
-    <a-plane color="#008000" height="5" width="9" position="0 1.2 -5" opacity="0.8"></a-plane>
-
-    <a-entity 
-        gltf-model="https://cdn.jsdelivr.net/gh/saracen7mi/tarevodzamija@main/grbOpstine.glb" 
-        position="-3 1.5 -5" 
-        scale="1.3 1.3 1.3" 
-        rotation="0 240 0" 
-        animation="property: rotation; to: 0 360 0; loop: true; dur: 5000">
-    </a-entity>
-
-    <a-entity 
-        gltf-model="https://cdn.jsdelivr.net/gh/saracen7mi/tarevodzamija@main/zvijezdaislam.glb" 
-        position="3 1.5 -5" 
-        scale="1.3 1.3 1.3" 
-        rotation="0 240 0" 
-        animation="property: rotation; to: 0 360 0; loop: true; dur: 5000">
-    </a-entity>
-
-    <!-- Language buttons (rašireni i veći) -->
-    <a-entity id="eng-button" class="clickable" geometry="primitive: plane; height: 0.6; width: 1.6"
-              material="color: red" position="-3.2 2.6 -4.9"
-              text="value: ENG; color: white; align: center; width: 3;">
-    </a-entity>
-
-    <a-entity id="deu-button" class="clickable" geometry="primitive: plane; height: 0.6; width: 1.6"
-              material="color: yellow" position="-1.1 2.6 -4.9"
-              text="value: DEU; color: black; align: center; width: 3;">
-    </a-entity>
-
-    <a-entity id="ita-button" class="clickable" geometry="primitive: plane; height: 0.6; width: 1.6"
-              material="color: blue" position="1.1 2.6 -4.9"
-              text="value: ITA; color: white; align: center; width: 3;">
-    </a-entity>
-
-    <a-entity id="tur-button" class="clickable" geometry="primitive: plane; height: 0.6; width: 1.6"
-              material="color: brown" position="3.2 2.6 -4.9"
-              text="value: TUR; color: white; align: center; width: 3;">
-    </a-entity>
-
-    <!-- Text block -->
-    <a-entity position="0 1.1 -4.9">
-        <a-text 
-            value="Stara džamija u Tarevu, svjedok vjekovne tradicije\n\nDuboko u srcu slikovitog kraja Kladnja, smještena među brežuljcima i netaknutom prirodom..." 
-            color="#FFFF00" width="7.5" wrap-count="60" align="center" scale="0.7 0.7 0.7">
-        </a-text>
-    </a-entity>
-
-    <!-- Lokacija -->
-    <a-entity position="0 -0.4 -4.9" id="location-link" class="clickable">
-        <a-text 
-            value="Lokacija:" 
-            position="-2 0 0.05" 
-            color="#000000"
-            align="center"
-            scale="1.2 1.4 1.4"
-            letter-spacing="1">
-        </a-text>
-        <a-plane 
-            color="#FF0000" 
-            height="0.6" 
-            width="1.7" 
-            opacity="0.6" 
-            position="-0.3 0 0.06">
-        </a-plane>
-        <a-text 
-            value="Klikni ovde" 
-            position="-0.4 0 0.06"  
-            color="#000000"
-            align="center"
-            scale="1.2 1.2 1.2" 
-            letter-spacing="1"
-            class="clickable">
-        </a-text>
-    </a-entity>
-
-    <!-- Kamera + kursor -->
-    <a-entity camera look-controls position="0 0 0">
-        <a-cursor color="#FF0000" radius="0.05"></a-cursor>
-    </a-entity>
-</a-scene>
-
-
-  <script>
-    const bosnianAudio = document.getElementById('audio-bosnian');
-    const englishAudio = document.getElementById('audio-english');
-    const germanAudio = document.getElementById('audio-german');
-    const italianAudio = document.getElementById('audio-italian');
-    const turkishAudio = document.getElementById('audio-turkish');
-
-    function stopAllAudio() {
-      [bosnianAudio, englishAudio, germanAudio, italianAudio, turkishAudio].forEach(audio => {
-        audio.pause();
-        audio.currentTime = 0;
-      });
-    }
-
-    function playAudio(audioElement) {
-      stopAllAudio();
-      audioElement.play();
-    }
-
-    window.addEventListener('click', () => {
-      if (bosnianAudio.paused) bosnianAudio.play();
-    }, { once: true });
-
-    document.getElementById('eng-button').addEventListener('click', () => playAudio(englishAudio));
-    document.getElementById('deu-button').addEventListener('click', () => playAudio(germanAudio));
-    document.getElementById('ita-button').addEventListener('click', () => playAudio(italianAudio));
-    document.getElementById('tur-button').addEventListener('click', () => playAudio(turkishAudio));
-
-    document.getElementById('location-link').addEventListener('click', () => {
-      window.open('https://www.google.com/maps/dir/?api=1&destination=44.323113,18.665817&travelmode=driving', '_blank');
-    });
-  </script>
-</body>
-</html>
 
 
 
